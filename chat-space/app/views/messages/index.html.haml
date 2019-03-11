@@ -1,0 +1,53 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title Chat-space
+    %link{:href => "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css", :rel => "stylesheet"}/
+  %body
+    %p.layout-notice チャットグループが作成されました
+    .layout-notification
+      .chat
+        .chat-side
+          .chat-user.clearfix
+            %h5 sample
+            .chat-user__actions
+              = link_to '/chat_groups/new', class:'chat-user__action' do
+                %i.fa.fa-pencil-square-o
+              = link_to '/user/edit', class:'chat-user__action' do
+                %i.fa.fa-cog
+          %ul.chat-groups
+            = link_to '/chat_group/2852/messages', class:'chat-group__link' do
+              %li.chat-group
+                %p.chat-group__name sample
+                %p.chat-group__message
+                  goodluck
+            = link_to '/chat_group/28882/messages', class:'chat-group__link' do
+              %li.chat-group
+                %p.chat-group__name sample
+                %p.chat-group__message
+                  not message
+        .chat-main
+          .chat-header.clearfix
+            .chat-header--left
+              %h2 sample
+              %p.chat-header__users
+                Member:
+                %span.chatheader__user sample
+            .chat-header--right
+              = link_to 'Edit','/chat_groups/28912/edit', class:'chat-header__edit-btn'
+          .chat-body
+            %ul.chat-messages
+              %li.chat-message
+                .chat-message__header.clearfix
+                  %p.chat-message__name sample
+                  %p.chat-message__time 2019/01/15 11:58:12
+                %p.chat-message__body not message
+          .chat-footer
+            %form#new_message.new_message{"accept-charset" => "UTF-8", :action => "/chat_group/28912/messages", :enctype => "multipart/form-data", :method => "post"}
+              .chat-footer__body
+                %textarea#message_nody{:name => "message[body]", :placeholder => "type a message", :row => "1"}
+                %label.chat-footer__file
+                  %input{:name => "message[image]", :type => "file", :value => "message_image"}/
+                  %i.fa.fa-image
+              %input{"data-disable-with" => "Send", :name => "commit", :type => "submit", :value => "send"}/
